@@ -125,8 +125,8 @@ button, a {
 
 .hero-overlay {
     z-index: 1;
-    opacity: .47;
-    background: linear-gradient(180deg, rgba(1, 16, 18, .36), rgba(2, 17, 18, .72));
+    opacity: .66;
+    background: linear-gradient(180deg, rgba(1, 12, 14, .52), rgba(1, 13, 14, .82));
 }
 
 .hero-content {
@@ -362,6 +362,14 @@ button, a {
 .resume-section {
     position: relative;
     padding: 104px 0;
+    border-top: 1px solid rgba(99, 223, 189, .18);
+    background: rgb(9, 45, 46);
+    color: #e8f2f0;
+}
+
+.resume-section + .resume-section {
+    border-top: 3px solid rgba(99, 223, 189, .52);
+    box-shadow: inset 0 14px 30px rgba(0, 0, 0, .14);
 }
 
 .section-shell {
@@ -370,7 +378,7 @@ button, a {
 }
 
 .section-tint {
-    background: var(--tint);
+    background: rgb(9, 45, 46);
 }
 
 .eyebrow {
@@ -398,7 +406,15 @@ button, a {
 
 .section-heading > p:last-child {
     margin: 18px 0 0;
-    color: var(--muted);
+    color: #b9cbc7;
+}
+
+.resume-section .section-heading h2 {
+    color: #fff;
+}
+
+.resume-section .eyebrow {
+    color: var(--accent-light);
 }
 
 .intro-section,
@@ -453,6 +469,10 @@ button, a {
     line-height: 1.85;
 }
 
+.intro-section .text-link {
+    color: var(--accent-light);
+}
+
 .text-link {
     display: inline-flex;
     gap: 10px;
@@ -491,12 +511,12 @@ button, a {
 
 .stat-strip dd {
     margin: 6px 0 0;
-    color: #aaa;
+    color: #e4efed;
     font-size: 13px;
 }
 
 .timeline {
-    border-top: 1px solid #c7d7d3;
+    border-top: 1px solid rgba(216, 232, 228, .34);
 }
 
 .timeline-item {
@@ -504,11 +524,11 @@ button, a {
     grid-template-columns: 230px 1fr;
     gap: 50px;
     padding: 42px 0;
-    border-bottom: 1px solid #c7d7d3;
+    border-bottom: 1px solid rgba(216, 232, 228, .34);
 }
 
 .timeline-date {
-    color: #54706b;
+    color: #8fe5cf;
     font-family: ui-monospace, Consolas, monospace;
     font-size: 14px;
     font-weight: 700;
@@ -516,13 +536,13 @@ button, a {
 
 .timeline-content h3 {
     margin: 3px 0 0;
-    color: var(--deep);
+    color: #fff;
     font-size: 29px;
 }
 
 .item-tag {
     margin: 0;
-    color: #14856d;
+    color: var(--accent-light);
     font-size: 12px;
     font-weight: 800;
     letter-spacing: .14em;
@@ -530,7 +550,7 @@ button, a {
 
 .item-subtitle {
     margin: 4px 0 12px;
-    color: var(--muted);
+    color: #c2d3cf;
     font-size: 17px;
 }
 
@@ -545,6 +565,10 @@ button, a {
 .result-list li {
     position: relative;
     padding-left: 18px;
+}
+
+.education-timeline .clean-list {
+    color: #dce9e6;
 }
 
 .clean-list li::before,
@@ -641,9 +665,17 @@ button, a {
 
 .project-card {
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(99, 223, 189, .2);
+    border-radius: 18px;
     background: white;
-    box-shadow: 0 18px 50px rgba(5,42,41,.07);
+    box-shadow: 0 24px 65px rgba(0, 0, 0, .32), 0 3px 12px rgba(40, 185, 148, .12);
+    transform: translateY(0);
+    transition: transform .28s ease, box-shadow .28s ease;
+}
+
+.project-card:hover {
+    box-shadow: 0 30px 78px rgba(0, 0, 0, .4), 0 6px 18px rgba(40, 185, 148, .16);
+    transform: translateY(-4px);
 }
 
 .project-card--wide,
@@ -752,8 +784,8 @@ button, a {
 .column-title {
     margin: 0 0 30px;
     padding-bottom: 13px;
-    border-bottom: 2px solid var(--deep);
-    color: var(--deep);
+    border-bottom: 2px solid rgba(99, 223, 189, .55);
+    color: #fff;
     font-size: 22px;
 }
 
@@ -768,7 +800,7 @@ button, a {
     bottom: 12px;
     left: 4px;
     width: 1px;
-    background: #b7cbc6;
+    background: rgba(183, 203, 198, .55);
     content: "";
 }
 
@@ -783,7 +815,7 @@ button, a {
     left: -30px;
     width: 13px;
     height: 13px;
-    border: 3px solid var(--tint);
+    border: 3px solid var(--deep);
     border-radius: 50%;
     background: var(--accent);
     box-shadow: 0 0 0 1px var(--accent);
@@ -791,7 +823,7 @@ button, a {
 }
 
 .compact-timeline time {
-    color: #13866d;
+    color: #8fe5cf;
     font-family: ui-monospace, Consolas, monospace;
     font-size: 12px;
     font-weight: 700;
@@ -799,13 +831,13 @@ button, a {
 
 .compact-timeline h4 {
     margin: 3px 0 3px;
-    color: var(--deep);
+    color: #f1f7f5;
     font-size: 18px;
 }
 
 .compact-timeline p {
     margin: 0;
-    color: var(--muted);
+    color: #b9cbc7;
     font-size: 14px;
 }
 
@@ -864,6 +896,7 @@ button, a {
     margin: 0;
     padding: 0;
     border-top: 1px solid rgba(255,255,255,.35);
+    counter-reset: award-item;
     list-style: none;
 }
 
@@ -876,8 +909,10 @@ button, a {
     color: rgb(200, 200, 200);
 }
 
-.award-years time {
-    color: #13866d;
+.award-years li::before {
+    color: var(--accent-light);
+    content: counter(award-item) "）";
+    counter-increment: award-item;
     font-family: ui-monospace, Consolas, monospace;
     font-size: 12px;
     font-weight: 700;
@@ -1248,11 +1283,13 @@ button, a {
 @media print {
     .hero, .section-nav, .site-footer, .certificate-trigger span { display: none !important; }
     body { background: white; color: black; font-size: 11pt; }
-    .resume-section { padding: 28px 0; break-inside: avoid; }
+    .resume-section { padding: 28px 0; border-top: 1px solid #bbb; background: white; color: black; break-inside: avoid; box-shadow: none; }
     .section-shell { width: 100%; }
     .intro-section, .research-section, .projects-section, .awards-section, .skills-section { background: white; color: black; }
     .intro-grid h2, .projects-section .section-heading h2, .awards-section .section-heading h2, .section-heading--light h2, .research-grid h3, .skill-groups h3, .award-years h3 { color: black; }
     .intro-copy .lead, .intro-copy p, .projects-section .section-heading--split > p, .awards-section .section-heading--split > p, .section-heading--light > p:last-child, .research-grid p, .skill-groups ul, .award-years li { color: #444; }
+    .timeline-content h3, .column-title, .compact-timeline h4 { color: black; }
+    .item-subtitle, .education-timeline .clean-list, .compact-timeline p { color: #444; }
     .stat-strip, .stat-strip div { background: white; }
     .project-card { break-inside: avoid; box-shadow: none; }
     .project-media { min-height: 0; }
