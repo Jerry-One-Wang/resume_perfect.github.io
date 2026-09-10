@@ -401,6 +401,22 @@ button, a {
     color: var(--muted);
 }
 
+.intro-section,
+.projects-section,
+.awards-section {
+    background: var(--deep);
+}
+
+.projects-section .section-heading h2,
+.awards-section .section-heading h2 {
+    color: #fff;
+}
+
+.projects-section .section-heading--split > p,
+.awards-section .section-heading--split > p {
+    color: #a9c2bd;
+}
+
 .section-heading--split {
     display: grid;
     grid-template-columns: 1.1fr .9fr;
@@ -421,13 +437,18 @@ button, a {
     gap: 38px 90px;
 }
 
+.intro-grid h2 {
+    color: #82a0a0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
 .intro-copy p {
     margin: 0 0 20px;
-    color: var(--muted);
+    color: #b4b4b4;
 }
 
 .intro-copy .lead {
-    color: var(--ink);
+    color: #b4b4b4;
     font-size: 20px;
     line-height: 1.85;
 }
@@ -448,12 +469,13 @@ button, a {
     grid-template-columns: repeat(4, 1fr);
     margin: 26px 0 0;
     border: 1px solid var(--line);
-    background: white;
+    background: #649696;
     box-shadow: var(--shadow);
 }
 
 .stat-strip div {
     padding: 28px;
+    background: #649696;
 }
 
 .stat-strip div + div {
@@ -469,7 +491,7 @@ button, a {
 
 .stat-strip dd {
     margin: 6px 0 0;
-    color: var(--muted);
+    color: #aaa;
     font-size: 13px;
 }
 
@@ -790,9 +812,9 @@ button, a {
 .award-highlights {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin-bottom: 68px;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    margin-bottom: 42px;
+    border-top: 1px solid rgba(255,255,255,.24);
+    border-bottom: 1px solid rgba(255,255,255,.24);
 }
 
 .award-highlights article {
@@ -800,7 +822,7 @@ button, a {
 }
 
 .award-highlights article + article {
-    border-left: 1px solid var(--line);
+    border-left: 1px solid rgba(255,255,255,.24);
 }
 
 .award-highlights strong,
@@ -809,20 +831,20 @@ button, a {
 }
 
 .award-highlights strong {
-    color: #0f8068;
+    color: var(--accent-light);
     font-size: 19px;
 }
 
 .award-highlights span {
     margin-top: 7px;
-    color: var(--muted);
+    color: #aaa;
     font-size: 13px;
     line-height: 1.5;
 }
 
 .award-years {
     display: grid;
-    gap: 42px;
+    gap: 22px;
 }
 
 .award-years section {
@@ -833,7 +855,7 @@ button, a {
 
 .award-years h3 {
     margin: 0;
-    color: var(--deep);
+    color: #fff;
     font-family: ui-monospace, Consolas, monospace;
     font-size: 32px;
 }
@@ -841,7 +863,7 @@ button, a {
 .award-years ul {
     margin: 0;
     padding: 0;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid rgba(255,255,255,.35);
     list-style: none;
 }
 
@@ -849,8 +871,9 @@ button, a {
     display: grid;
     grid-template-columns: 48px 1fr;
     gap: 10px;
-    padding: 14px 2px;
-    border-bottom: 1px solid var(--line);
+    padding: 9px 2px;
+    border-bottom: 1px solid rgba(255,255,255,.35);
+    color: rgb(200, 200, 200);
 }
 
 .award-years time {
@@ -858,6 +881,22 @@ button, a {
     font-family: ui-monospace, Consolas, monospace;
     font-size: 12px;
     font-weight: 700;
+}
+
+@media (min-width: 921px) {
+    .award-years ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .award-years li:nth-child(odd) {
+        border-right: 1px solid rgba(255,255,255,.35);
+        padding-right: 18px;
+    }
+
+    .award-years li:nth-child(even) {
+        padding-left: 18px;
+    }
 }
 
 .skill-groups {
@@ -1211,9 +1250,10 @@ button, a {
     body { background: white; color: black; font-size: 11pt; }
     .resume-section { padding: 28px 0; break-inside: avoid; }
     .section-shell { width: 100%; }
-    .research-section, .skills-section { background: white; color: black; }
-    .section-heading--light h2, .research-grid h3, .skill-groups h3 { color: black; }
-    .section-heading--light > p:last-child, .research-grid p, .skill-groups ul { color: #444; }
+    .intro-section, .research-section, .projects-section, .awards-section, .skills-section { background: white; color: black; }
+    .intro-grid h2, .projects-section .section-heading h2, .awards-section .section-heading h2, .section-heading--light h2, .research-grid h3, .skill-groups h3, .award-years h3 { color: black; }
+    .intro-copy .lead, .intro-copy p, .projects-section .section-heading--split > p, .awards-section .section-heading--split > p, .section-heading--light > p:last-child, .research-grid p, .skill-groups ul, .award-years li { color: #444; }
+    .stat-strip, .stat-strip div { background: white; }
     .project-card { break-inside: avoid; box-shadow: none; }
     .project-media { min-height: 0; }
     .project-card--certificate .project-media { display: none; }
