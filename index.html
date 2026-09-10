@@ -1,133 +1,177 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-CN">
 <head>
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dmego Home">
-    <meta name="keywords" content="Dmego,Homepage">
-    <meta name="author" content="Dmego">
-    <title>Dmego Home</title>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/onlinewebfonts.css"/>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/vno.css">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/dmego-home-page@latest/assets/css/wakatime-theme.css">
-    <link rel="apple-touch-icon" href="https://unpkg.com/dmego-home-page@latest/apple-touch-icon.png">
-    <link rel="icon" href="https://unpkg.com/dmego-home-page@latest/favicon.ico">
+    <meta name="description" content="王先森的个人简历：合肥工业大学交通运输工程硕士研究生，研究方向涵盖智能交通、车路协同、交通管控与 BIM 数字仿真。">
+    <meta name="keywords" content="王先森,智能交通,车路协同,交通管控,BIM,个人简历,合肥工业大学">
+    <meta name="author" content="王先森">
+    <meta name="theme-color" content="#092d2e">
+    <title>王先森｜智能交通 · 个人简历</title>
+    <link rel="stylesheet" href="./assets/css/vno.css">
+    <link rel="stylesheet" href="./assets/css/resume.css">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <link rel="icon" href="./favicon.ico">
 </head>
-
 <body>
-    <span class="mobile btn-mobile-menu">
-        <i class="social iconfont icon-list btn-mobile-menu__icon"></i>
-        <i class="social iconfont icon-angleup btn-mobile-close__icon hidden"></i>
-    </span>
-    <header id="panel" class="panel-cover">
+    <a class="skip-link" href="#about">跳到简历正文</a>
+
+    <header id="panel" class="panel-cover hero" aria-labelledby="hero-title">
+        <div class="panel-cover--overlay hero-overlay"></div>
         <div class="panel-main">
             <div class="panel-main__inner panel-inverted">
-                <div class="panel-main__content">
-                    <div class="ih-item circle effect right_to_left">            
-                        <a href="#" title="" class="blog-button">
-                            <div class="img"><img src="https://unpkg.com/dmego-home-page@latest/assets/img/logo3.jpg" alt="img" class="js-avatar iUp profilepic"></div>
-                            <div class="info iUp">
-                                <div class="info-back">
-                                    <h2> 
-                                        
-                                             Keep Peace
-                                        
-                                    </h2>
-                                    <p>
-                                        
-                                            2026 · 平静
-                                        
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <h1 class="panel-cover__title panel-title iUp">
-                        <a href="#" title="Dmego Home">Dmego</a>
-                    </h1>
-                    <p class="panel-cover__subtitle panel-subtitle iUp">Code Create Life</p>
-                    <hr class="panel-cover__divider iUp" />
-                    <p id="description" class="panel-cover__description iUp">如何得与凉风约, 不共尘沙一并来!
-                        <br/>
-                        <strong>-「中牟道中」</strong>
-                    </p>
-                    <div class="navigation-wrapper iUp">
-                        <div>
-                            <nav class="cover-navigation cover-navigation--primary">
-                                <ul class="navigation">
-                                    <li class="navigation__item">
-                                        <a href="/" class="blog-button">首页</a>
-                                    </li>
-                                    <li class="navigation__item">
-                                        <a href="https://dmego.cn" class="blog-button" target="_blank" onclick="event.preventDefault(); showWeChatModal();">博客</a>
-                                    </li>
-                                    <li class="navigation__item">
-                                        <a href="https://r.dmego.cn" class="blog-button" target="_blank" onclick="event.preventDefault();">简历</a>
-                                    </li>
-                                    <li class="navigation__item">
-                                        <a href="https://dmego.cn/about/" class="blog-button" target="_blank" onclick="event.preventDefault();">关于</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="iUp">
-                            <nav class="cover-navigation navigation--social">
-                                <ul class="navigation">
-                                    <li class="navigation__item">
-                                        <a href="https://github.com/dmego/" title="github" target="_blank">
-                                            <i class='social iconfont icon-github'></i>
-                                            <span class="label">github</span>
-                                        </a>
-                                    </li>
-                                    <li class="navigation__item">
-                                        <a href="http://www.cnblogs.com/dmego/" title="cnblogs" target="_blank">
-                                            <i class='social iconfont icon-cnblogs'></i>
-                                            <span class="label">cnblogs</span>
-                                        </a>
-                                    </li>
-
-                                    <li class="navigation__item">
-                                        <a href="https://www.zhihu.com/people/dmego/" title="zhihu" target="_blank">
-                                            <i class='social iconfont icon-zhihu'></i>
-                                            <span class="label">zhihu</span>
-                                        </a>
-                                    </li>
-                                    <li class="navigation__item">
-                                        <!-- 加密的邮箱地址, 请自行修改, 或者改用下方的明文方式 -->
-                                        <a href="javascript:decryptEmail('ZG1lYWdvQGdtYWlsLmNvbQ==');" title="email">
-                                        <!-- <a href="test@test.com" title="email"> -->
-                                            <i class='social iconfont icon-email'></i>
-                                            <span class="label">email</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                <div class="panel-main__content hero-content">
+                    <a class="avatar-link iUp" href="#about" aria-label="进入王先森的简历正文">
+                        <span class="avatar-scene" aria-hidden="true">
+                            <span class="avatar-face avatar-front"><img src="./assets/img/avatar.webp" width="512" height="512" alt=""></span>
+                            <span class="avatar-face avatar-back"><strong>知行合一</strong><small>交通让生活更美好</small></span>
+                        </span>
+                    </a>
+                    <p class="hero-kicker iUp">PORTFOLIO · 2026</p>
+                    <h1 id="hero-title" class="panel-cover__title panel-title iUp">王先森</h1>
+                    <p class="panel-cover__subtitle panel-subtitle iUp">合肥工业大学 · 交通运输工程硕士研究生</p>
+                    <hr class="panel-cover__divider iUp">
+                    <p id="description" class="panel-cover__description hero-description iUp">专注智能交通与网联技术交叉创新<br><strong>研究，也让成果真正落地</strong></p>
+                    <nav class="hero-nav iUp" aria-label="简历章节">
+                        <a href="#about">关于我</a><a href="#education">教育背景</a><a href="#research">研究方向</a><a href="#projects">项目经历</a><a href="#experience">实践经历</a><a href="#awards">荣誉竞赛</a><a href="#skills">技能与语言</a>
+                    </nav>
+                    <nav class="contact-links iUp" aria-label="联系方式">
+                        <a href="mailto:2025111498@mail.hfut.edu.cn">邮箱</a>
+                        <a href="https://github.com/Jerry-One-Wang" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://scholar.google.com/citations?view_op=list_works&amp;hl=zh-CN&amp;user=6ON6zd0AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                    </nav>
                 </div>
             </div>
-            <div class="panel-cover--overlay cover-slate"></div>
         </div>
-        <!-- <div class="beian iUp">
-            <a class="icp" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">XXX</a>
-            <a class="gwab" href="http://www.beian.gov.cn/portal/recordQuery" target="_blank">XXX</a>
-        </div> -->
-        <div class="remark iUp">
-            <p class="power">Powered By 
-                <a href="https://github.com/features/actions" target="_blank"> GitHub Actions </a> And 
-                <a href="https://hitokoto.cn/" target="_blank"> Hitokoto </a>
-            </p>
-        </div>
+        <a class="scroll-cue" href="#about" aria-label="向下查看简历"><span>SCROLL</span><i aria-hidden="true"></i></a>
     </header>
-    <!-- WeChat Modal -->
-    <div id="wechatModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000; justify-content: center; align-items: center; flex-direction: column; opacity: 0; visibility: hidden; transition: opacity 0.3s ease;" onclick="closeWeChatModal()">
-        <img src="./assets/img/wechat.jpg" alt="WeChat" style="max-width: 300px; max-height: 300px; border-radius: 10px;" onclick="event.stopPropagation()">
-    </div>
-    <script type="text/javascript" src="https://unpkg.com/dmego-home-page@latest/assets/js/main.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/dmego-home-page@latest/assets/js/theme-loader.js"></script>
+
+    <nav class="section-nav" aria-label="简历快速导航">
+        <a class="section-nav__brand" href="#panel">王先森</a>
+        <div class="section-nav__links"><a href="#about">关于</a><a href="#education">教育</a><a href="#research">研究</a><a href="#projects">项目</a><a href="#experience">实践</a><a href="#awards">荣誉</a><a href="#skills">技能</a></div>
+    </nav>
+
+    <main>
+        <section id="about" class="resume-section intro-section">
+            <div class="section-shell intro-grid">
+                <div><p class="eyebrow">ABOUT ME</p><h2>以交通为专业，<br>以技术回应真实问题。</h2></div>
+                <div class="intro-copy">
+                    <p class="lead">我是合肥工业大学交通运输工程专业硕士研究生。本科阶段以优异成绩获得推免资格，持续围绕智能交通、车路协同、交通管控与数字仿真开展项目实践。</p>
+                    <p>从停车资源实地调研、V2X 辅助驾驶，到高速公路 BIM 仿真与应急车道协同管控，我重视把研究思路转化为清晰方案、可验证模型和可落地成果。</p>
+                    <p>在多项团队项目中承担统筹、文献检索、计划书与算法方案撰写、软件仿真和成果汇报工作，积累了跨角色协作与项目推进经验。</p>
+                    <a class="text-link" href="mailto:2025111498@mail.hfut.edu.cn">欢迎项目课题与赛事合作交流 <span aria-hidden="true">↗</span></a>
+                </div>
+                <dl class="stat-strip" aria-label="学习成绩概览">
+                    <div><dt>92.1</dt><dd>本科均分</dd></div><div><dt>2 / 约120</dt><dd>本科专业排名</dd></div><div><dt>第 1 名</dt><dd>推免综合考核</dd></div><div><dt>5 项</dt><dd>重点项目经历</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section id="education" class="resume-section section-tint">
+            <div class="section-shell">
+                <header class="section-heading"><p class="eyebrow">EDUCATION</p><h2>教育背景</h2><p>交通工程本科训练与智能交通方向的研究生阶段衔接。</p></header>
+                <div class="timeline education-timeline">
+                    <article class="timeline-item"><div class="timeline-date">2025.09 — 2028.06</div><div class="timeline-content"><p class="item-tag">硕士 · 在读</p><h3>合肥工业大学</h3><p class="item-subtitle">交通运输工程 · 智能交通方向</p><ul class="clean-list"><li>推免综合考核第 1 名</li><li>研究生一等奖学金</li></ul></div></article>
+                    <article class="timeline-item"><div class="timeline-date">2021.09 — 2025.06</div><div class="timeline-content"><p class="item-tag">本科</p><h3>华东交通大学</h3><p class="item-subtitle">交通工程</p><ul class="clean-list"><li>均分 92.1 / 100，专业排名 2 / 约120</li><li>推免综合考核第 1 名，获校级优秀本科毕业设计</li></ul></div></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="resume-section research-section">
+            <div class="section-shell research-layout">
+                <header class="section-heading section-heading--light"><p class="eyebrow">RESEARCH FOCUS</p><h2>研究方向</h2><p>围绕道路交通系统的感知、协同、控制与数字化表达，构建从方法到应用的完整链路。</p></header>
+                <div class="research-grid">
+                    <article><span>01</span><h3>智能交通</h3><p>面向交通运行状态识别、优化决策与智慧道路应用。</p></article>
+                    <article><span>02</span><h3>车路协同</h3><p>探索 V2X 环境下车辆、道路与控制系统的信息协同。</p></article>
+                    <article><span>03</span><h3>交通管控</h3><p>聚焦高速公路应急场景与动态协同管控方法。</p></article>
+                    <article><span>04</span><h3>BIM 与数字仿真</h3><p>通过 BIM、SUMO、Vissim 等工具验证交通设计方案。</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="resume-section projects-section">
+            <div class="section-shell">
+                <header class="section-heading section-heading--split"><div><p class="eyebrow">SELECTED PROJECTS</p><h2>科研项目经历</h2></div><p>从生态驾驶、共享停车到智慧高速，覆盖调研、方案、算法、仿真与成果汇报。</p></header>
+                <div class="project-list">
+                    <article class="project-card project-card--wide">
+                        <div class="project-media"><img src="./assets/img/projects/green-future.webp" width="1600" height="900" loading="lazy" alt="绿动未来项目封面，展示城市立交与泛智能网联环境下的生态驾驶主题"></div>
+                        <div class="project-copy"><div class="project-meta"><span>2023.11 起</span><span>生态驾驶</span></div><h3>绿动未来 — 泛智能网联环境下的生态驾驶领跑者</h3><p class="project-role">项目第三负责人</p><p>负责文献检索、研究思路梳理与项目计划书撰写，围绕泛智能网联环境下的生态驾驶开展方案研究。</p><ul class="result-list"><li>中国大学生计算机设计大赛江西省级赛三等奖</li><li>交通运输工程学院大学生创新大赛院赛本科生创意组银奖</li></ul></div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-media"><img src="./assets/img/projects/shared-parking.webp" width="1600" height="900" loading="lazy" alt="共享停车优化方案项目图片待补充"></div>
+                        <div class="project-copy"><div class="project-meta"><span>2024.02</span><span>共享停车</span></div><h3>基于“旭辉 Cmall”及周边片区的共享停车优化方案</h3><p class="project-role">项目第一负责人</p><p>负责团队统筹、项目计划书撰写与实地调研，分析停车供需与共享停车优化路径。</p><ul class="result-list"><li>华东交通大学第一届交通科技创新大赛三等奖</li></ul></div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-media"><img src="./assets/img/projects/v2x-driving.webp" width="1600" height="900" loading="lazy" alt="基于 V2X 的智能辅助驾驶系统项目图片待补充"></div>
+                        <div class="project-copy"><div class="project-meta"><span>2024.01 — 05</span><span>V2X</span></div><h3>基于 V2X 的智能辅助驾驶系统</h3><p class="project-role">项目第二负责人</p><p>负责文献检索、项目计划书及算法方案撰写，探索车路协同条件下的智能辅助驾驶。</p><ul class="result-list"><li>服务外包创新创业大赛全国三等奖</li><li>中国大学生计算机设计大赛江西省级赛二等奖</li></ul></div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-media"><img src="./assets/img/projects/bim-highway.webp" width="1600" height="900" loading="lazy" alt="绿野通途高速公路 BIM 仿真设计项目图片待补充"></div>
+                        <div class="project-copy"><div class="project-meta"><span>2024</span><span>BIM 仿真</span></div><h3>绿野通途 — 某高速公路 E 路段 BIM 仿真设计</h3><p class="project-role">项目第二负责人</p><p>负责软件操作、项目介绍撰写和 PPT 制作，以 BIM 与数字仿真呈现高速公路设计方案。</p><ul class="result-list"><li>“交通杯”全国大学生仿真大赛全国一等奖</li><li>第十一届国际高校 BIM 毕业设计创新大赛全国二等奖</li></ul></div>
+                    </article>
+                    <article class="project-card project-card--certificate">
+                        <button class="project-media certificate-trigger" type="button" data-dialog-open="certificate-dialog" aria-label="放大查看全国高校智能交通创新与创业大赛一等奖证书"><img src="./assets/img/projects/emergency-lane-award.webp" width="1340" height="1895" loading="lazy" alt="第十届全国高校智能交通创新与创业大赛全国一等奖证书"><span>点击查看完整证书</span></button>
+                        <div class="project-copy"><div class="project-meta"><span>2026</span><span>智慧高速</span></div><h3>慧行有道 — 基于交通状态识别的智慧高速应急车道协同管控方法</h3><p>面向高速公路交通状态识别与动态应急车道启用场景，研究智慧高速应急车道协同管控方法。</p><ul class="result-list"><li>第二十一届全国大学生交通运输科技大赛全国优秀奖</li><li>第十届全国高校智能交通创新与创业大赛全国一等奖</li></ul></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="resume-section section-tint">
+            <div class="section-shell">
+                <header class="section-heading section-heading--split"><div><p class="eyebrow">EXPERIENCE</p><h2>实践与学生工作</h2></div><p>在组织管理和不同行业一线实践中，持续积累沟通、协作与执行经验。</p></header>
+                <div class="experience-columns">
+                    <div><h3 class="column-title">学生工作</h3><div class="compact-timeline">
+                        <article><time>2021.09 — 2025.06</time><h4>班级心理委员</h4><p>服务交通工程 2021-2 班，协助开展班级沟通与日常工作。</p></article>
+                        <article><time>2022.11 — 2025.06</time><h4>教师助理</h4><p>协助教师完成资料整理、沟通协调与管理支持工作。</p></article>
+                        <article><time>2023.09 — 2024.06</time><h4>学院学生工作</h4><p>担任学生会实践部副部长，参与实践活动组织与团队协作。</p></article>
+                        <article><time>硕士阶段</time><h4>研究生会工作</h4><p>担任研究生会主席团成员、研究生会办公室负责人。</p></article>
+                    </div></div>
+                    <div><h3 class="column-title">社会实践</h3><div class="compact-timeline">
+                        <article><time>2021.07 — 08</time><h4>菜鸟驿站 · 导货员</h4><p>参与物流运输与站点一线服务。</p></article>
+                        <article><time>2022.07 — 08</time><h4>品善投资有限公司 · 电话销售员</h4><p>接触金融业务沟通与客户服务。</p></article>
+                        <article><time>2024.02</time><h4>中国铁路南昌局集团有限公司 · 车站管理员</h4><p>参与铁路客运服务与站点秩序管理。</p></article>
+                    </div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="resume-section awards-section">
+            <div class="section-shell">
+                <header class="section-heading section-heading--split"><div><p class="eyebrow">HONORS &amp; AWARDS</p><h2>荣誉与竞赛</h2></div><p>从校级荣誉到全国性专业竞赛，以持续投入形成稳定成长轨迹。</p></header>
+                <div class="award-highlights" aria-label="重点荣誉"><article><strong>全国一等奖</strong><span>智能交通创新与创业大赛</span></article><article><strong>全国一等奖</strong><span>“交通杯”大学生仿真大赛</span></article><article><strong>全国二等奖</strong><span>国际高校 BIM 毕设创新大赛</span></article><article><strong>全国三等奖</strong><span>服务外包创新创业大赛</span></article></div>
+                <div class="award-years">
+                    <section><h3>2026</h3><ul><li><time>07</time>第十届全国高校智能交通创新与创业大赛全国一等奖</li><li><time>05</time>第二十一届全国大学生交通运输科技大赛全国优秀奖</li><li><time>05</time>合肥工业大学趣味运动会一等奖</li></ul></section>
+                    <section><h3>2025</h3><ul><li><time>09</time>合肥工业大学研究生一等奖学金</li><li><time>06</time>第十一届国际高校 BIM 毕业设计创新大赛全国二等奖</li><li><time>06</time>华东交通大学优秀学生特等奖学金</li><li><time>06</time>华东交通大学“三好学生”</li><li><time>06</time>华东交通大学“优秀学生干部”</li><li><time>06</time>华东交通大学优秀本科毕业设计</li></ul></section>
+                    <section><h3>2024</h3><ul><li><time>12</time>江西省高校 BIM 毕业设计创新大赛一等奖</li><li><time>12</time>华东交通大学优秀学生一等奖学金</li><li><time>10</time>第四届江西省大学生虚拟现实大赛三等奖</li><li><time>10</time>中国铁路南昌局集团有限公司团委2023年度优秀志愿者</li><li><time>07</time>第十五届中国大学生服务外包创新创业大赛全国赛三等奖</li><li><time>06</time>“交通杯”全国大学生仿真大赛全国一等奖</li><li><time>06</time>中国大学生计算机设计大赛江西省级赛二等奖</li><li><time>06</time>中国大学生计算机设计大赛江西省级赛三等奖</li><li><time>06</time>华东交通大学优秀志愿者</li><li><time>05</time>第十五届中国大学生服务外包创新创业大赛东部区域赛二等奖</li><li><time>05</time>交通运输工程学院“奉献之星”</li><li><time>05</time>华东交通大学优秀寝室心理保健员</li><li><time>04</time>华东交通大学第一届软件设计大赛三等奖</li><li><time>04</time>华东交通大学第一届计算机设计大赛三等奖</li><li><time>03</time>交通运输工程学院大学生创新大赛院赛银奖</li></ul></section>
+                    <section><h3>2023</h3><ul><li><time>12</time>华东交通大学优秀学生一等奖学金</li><li><time>12</time>华东交通大学“三好学生”</li><li><time>12</time>华东交通大学“优秀学生干部”</li><li><time>11</time>华东交通大学第一届交通科技创新大赛三等奖</li></ul></section>
+                    <section><h3>2022</h3><ul><li><time>12</time>华东交通大学优秀学生一等奖学金</li><li><time>12</time>华东交通大学“三好学生”</li></ul></section>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="resume-section skills-section">
+            <div class="section-shell skills-layout">
+                <header class="section-heading section-heading--light"><p class="eyebrow">SKILLS</p><h2>技能与语言</h2><p>以交通工程专业能力为主轴，结合编程、仿真、设计表达和团队协作。</p></header>
+                <div class="skill-groups">
+                    <article><span>01</span><h3>编程与仿真</h3><ul><li>Python</li><li>Matlab</li><li>SUMO</li><li>Vissim</li><li>TransCAD</li></ul></article>
+                    <article><span>02</span><h3>软件工具</h3><ul><li>Office / WPS</li><li>Photoshop</li><li>AutoCAD</li><li>BIM 工具</li></ul></article>
+                    <article><span>03</span><h3>语言与证书</h3><ul><li>CET-4</li><li>CET-6</li><li>计算机二级（优秀）</li><li>普通话二级乙等</li></ul></article>
+                    <article><span>04</span><h3>综合能力</h3><ul><li>项目统筹</li><li>团队协作</li><li>材料撰写</li><li>成果汇报</li></ul></article>
+                </div>
+                <blockquote>做事细致严谨，以责任心推进团队目标；保持学习能力，也重视把研究成果讲清楚、做扎实。</blockquote>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"><div class="section-shell footer-inner"><div><strong>王先森</strong><p>交通运输工程 · 智能交通方向</p></div><div class="footer-links"><a href="mailto:2025111498@mail.hfut.edu.cn">联系我</a><a href="https://github.com/Jerry-One-Wang" target="_blank" rel="noopener noreferrer">GitHub</a><a href="#panel">返回顶部 ↑</a></div></div></footer>
+
+    <dialog id="certificate-dialog" class="image-dialog" aria-labelledby="certificate-title">
+        <div class="dialog-toolbar"><div><strong id="certificate-title">全国高校智能交通创新与创业大赛一等奖</strong><span>2026 · 智慧高速应急车道协同管控方法</span></div><button type="button" data-dialog-close aria-label="关闭证书大图">关闭 ×</button></div>
+        <div class="dialog-image-wrap"><img src="./assets/img/projects/emergency-lane-award.webp" width="1340" height="1895" alt="第十届全国高校智能交通创新与创业大赛全国一等奖完整证书"></div>
+    </dialog>
+
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>

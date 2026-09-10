@@ -1,182 +1,100 @@
-var iUp = (function () {
-	var time = 0,
-		duration = 150,
-		clean = function () {
-			time = 0;
-		},
-		up = function (element) {
-			setTimeout(function () {
-				element.classList.add("up");
-			}, time);
-			time += duration;
-		},
-		down = function (element) {
-			element.classList.remove("up");
-		},
-		toggle = function (element) {
-			setTimeout(function () {
-				element.classList.toggle("up");
-			}, time);
-			time += duration;
-		};
-	return {
-		clean: clean,
-		up: up,
-		down: down,
-		toggle: toggle
-	};
+(function () {
+    "use strict";
+
+    var BING_IMAGE_URL_PATTERN = /^\/th\?id=OHR\.[a-zA-Z0-9_-]+\.jpg(&[a-zA-Z0-9=._-]+)*$/;
+
+    function revealHero() {
+        var items = document.querySelectorAll(".iUp");
+        items.forEach(function (item, index) {
+            window.setTimeout(function () { item.classList.add("up"); }, index * 110);
+        });
+    }
+
+    function setBingBackground(images) {
+        var panel = document.getElementById("panel");
+        if (!panel || !Array.isArray(images) || images.length === 0) return;
+        var validImages = images.filter(function (url) {
+            return typeof url === "string" && BING_IMAGE_URL_PATTERN.test(url);
+        });
+        if (validImages.length === 0) return;
+
+        var storageKey = "resume-bing-image-index";
+        var previous = Number.parseInt(sessionStorage.getItem(storageKey), 10);
+        var next = Number.isInteger(previous) ? (previous + 1) % validImages.length : 0;
+        var imageUrl = "https://cn.bing.com" + validImages[next];
+        var preload = new Image();
+        preload.addEventListener("load", function () {
+            panel.style.backgroundImage = "url('" + imageUrl.replace(/[\\']/g, "\\$&") + "')";
+            sessionStorage.setItem(storageKey, String(next));
+        });
+        preload.src = imageUrl;
+    }
+
+    function loadBingImages() {
+        if (window.BING_IMAGES) {
+            setBingBackground(window.BING_IMAGES);
+            return;
+        }
+        var script = document.createElement("script");
+        script.src = "./assets/json/images.js";
+        script.addEventListener("load", function () { setBingBackground(window.BING_IMAGES); });
+        document.body.appendChild(script);
+    }
+
+    function setupCertificateDialog() {
+        var dialog = document.getElementById("certificate-dialog");
+        var openButton = document.querySelector("[data-dialog-open='certificate-dialog']");
+        var closeButton = dialog && dialog.querySelector("[data-dialog-close]");
+        if (!dialog || !openButton || !closeButton) return;
+
+        openButton.addEventListener("click", function () {
+            if (typeof dialog.showModal === "function") {
+                dialog.showModal();
+                document.body.classList.add("dialog-open");
+                closeButton.focus();
+            }
+        });
+
+        function closeDialog() {
+            if (dialog.open) dialog.close();
+        }
+
+        closeButton.addEventListener("click", closeDialog);
+        dialog.addEventListener("click", function (event) {
+            var rect = dialog.getBoundingClientRect();
+            var inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
+            if (!inside) closeDialog();
+        });
+        dialog.addEventListener("close", function () {
+            document.body.classList.remove("dialog-open");
+            openButton.focus();
+        });
+    }
+
+    function setupSectionState() {
+        if (!("IntersectionObserver" in window)) return;
+        var navLinks = Array.from(document.querySelectorAll(".section-nav__links a"));
+        var sections = navLinks.map(function (link) {
+            return document.querySelector(link.getAttribute("href"));
+        }).filter(Boolean);
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(function (link) {
+                    var active = link.getAttribute("href") === "#" + entry.target.id;
+                    link.classList.toggle("is-active", active);
+                    if (active) link.setAttribute("aria-current", "location");
+                    else link.removeAttribute("aria-current");
+                });
+            });
+        }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 });
+        sections.forEach(function (section) { observer.observe(section); });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        revealHero();
+        loadBingImages();
+        setupCertificateDialog();
+        setupSectionState();
+    });
 })();
-
-// Bing image URL pattern: validates format and prevents CSS injection
-var BING_IMAGE_URL_PATTERN = /^\/th\?id=OHR\.[a-zA-Z0-9_\-]+\.jpg(&[a-zA-Z0-9=._\-]+)*$/;
-
-function getBingImages(imgUrls) {
-	/**
-	 * 获取Bing壁纸
-	 * 先使用 GitHub Action 每天获取 Bing 壁纸 URL 并更新 images.js 文件
-	 * 然后读取 images.js 文件中的数据
-	 */
-	var panel = document.querySelector('#panel');
-	if (!panel || !imgUrls || !Array.isArray(imgUrls) || imgUrls.length === 0) {
-		return;
-	}
-	
-	var indexName = "bing-image-index";
-	var index = parseInt(sessionStorage.getItem(indexName), 10);
-	var maxIndex = imgUrls.length - 1;
-	
-	if (isNaN(index) || index > maxIndex) {
-		index = 0;
-	} else {
-		index++;
-		if (index > maxIndex) {
-			index = 0;
-		}
-	}
-	
-	var imgUrl = imgUrls[index];
-	// Validate URL format to prevent CSS injection
-	if (!imgUrl || typeof imgUrl !== 'string' || !imgUrl.match(BING_IMAGE_URL_PATTERN)) {
-		return;
-	}
-	
-	// Use backgroundImage property with proper escaping to prevent CSS injection
-	var url = "https://cn.bing.com" + imgUrl;
-	panel.style.backgroundImage = "url('" + url.replace(/['\\]/g, '\\$&') + "')";
-	panel.style.backgroundPosition = "center center";
-	panel.style.backgroundRepeat = "no-repeat";
-	panel.style.backgroundColor = "#666";
-	panel.style.backgroundSize = "cover";
-	sessionStorage.setItem(indexName, index);
-}
-
-function decryptEmail(encoded) {
-	var address = atob(encoded);
-	window.location.href = "mailto:" + address;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-	// 获取一言数据
-	fetch("https://v1.hitokoto.cn")
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(res) {
-			var descElement = document.getElementById('description');
-			if (descElement && res.hitokoto && res.from) {
-				// Create text nodes to prevent XSS
-				var textNode = document.createTextNode(res.hitokoto);
-				var br = document.createElement('br');
-				var fromText = document.createTextNode(' -「');
-				var strong = document.createElement('strong');
-				strong.textContent = res.from;
-				var endText = document.createTextNode('」');
-				
-				descElement.innerHTML = '';
-				descElement.appendChild(textNode);
-				descElement.appendChild(br);
-				descElement.appendChild(fromText);
-				descElement.appendChild(strong);
-				descElement.appendChild(endText);
-			}
-		})
-		.catch(function(error) {
-			console.error('Error fetching hitokoto:', error);
-		});
-
-	var iUpElements = document.querySelectorAll(".iUp");
-	for (var i = 0; i < iUpElements.length; i++) {
-		iUp.up(iUpElements[i]);
-	}
-
-	var avatarElement = document.querySelector(".js-avatar");
-	if (avatarElement) {
-		avatarElement.addEventListener('load', function () {
-			avatarElement.classList.add("show");
-		});
-	}
-	(function () {
-		function loadScriptOnce(url, callback) {
-			var existing = document.querySelector('script[data-bing-images-loader="1"]');
-			if (existing) {
-				callback(null);
-				return;
-			}
-			var script = document.createElement('script');
-			script.setAttribute('data-bing-images-loader', '1');
-			script.src = url + '?t=' + new Date().getTime();
-			script.onload = function () { callback(null); };
-			script.onerror = function () { callback(new Error('Failed to load ' + url)); };
-			document.body.appendChild(script);
-		}
-
-		loadScriptOnce('./assets/json/images.js', function (err) {
-			if (!err && typeof getBingImages === 'function' && window.BING_IMAGES && Array.isArray(window.BING_IMAGES)) {
-				getBingImages(window.BING_IMAGES);
-			}
-		});
-	})();
-});
-
-var btnMobileMenu = document.querySelector('.btn-mobile-menu__icon');
-var navigationWrapper = document.querySelector('.navigation-wrapper');
-
-if (btnMobileMenu && navigationWrapper) {
-	btnMobileMenu.addEventListener('click', function () {
-		var isVisible = navigationWrapper.classList.contains('visible');
-		
-		function handleAnimationEnd() {
-			navigationWrapper.classList.remove('visible', 'animated', 'bounceOutUp');
-			navigationWrapper.removeEventListener('animationend', handleAnimationEnd);
-		}
-		
-		if (isVisible) {
-			navigationWrapper.addEventListener('animationend', handleAnimationEnd);
-			navigationWrapper.classList.remove('bounceInDown');
-			navigationWrapper.classList.add('animated', 'bounceOutUp');
-		} else {
-			navigationWrapper.classList.add('visible', 'animated', 'bounceInDown');
-		}
-		
-		btnMobileMenu.classList.toggle('icon-list');
-		btnMobileMenu.classList.toggle('icon-angleup');
-	});
-}
-
-function showWeChatModal() {
-	const modal = document.getElementById('wechatModal');
-	modal.style.display = 'flex';
-	setTimeout(() => {
-		modal.style.opacity = '1';
-		modal.style.visibility = 'visible';
-	}, 10);
-}
-
-function closeWeChatModal() {
-	const modal = document.getElementById('wechatModal');
-	modal.style.opacity = '0';
-	modal.style.visibility = 'hidden';
-	setTimeout(() => {
-		modal.style.display = 'none';
-	}, 300);
-}
