@@ -41,25 +41,137 @@
         document.body.appendChild(script);
     }
 
-    function setupCertificateDialog() {
-        var dialog = document.getElementById("certificate-dialog");
-        var openButton = document.querySelector("[data-dialog-open='certificate-dialog']");
+    function setupProjectGalleries() {
+        var galleries = Array.from(document.querySelectorAll("[data-project-gallery]"));
+        var dialog = document.getElementById("project-image-dialog");
+        var dialogImage = document.getElementById("project-dialog-image");
+        var dialogTitle = document.getElementById("project-image-title");
+        var dialogCount = document.getElementById("project-image-count");
         var closeButton = dialog && dialog.querySelector("[data-dialog-close]");
-        if (!dialog || !openButton || !closeButton) return;
+        var dialogPrev = dialog && dialog.querySelector("[data-dialog-prev]");
+        var dialogNext = dialog && dialog.querySelector("[data-dialog-next]");
+        var dialogState = { gallery: null, index: 0, trigger: null };
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        openButton.addEventListener("click", function () {
-            if (typeof dialog.showModal === "function") {
-                dialog.showModal();
-                document.body.classList.add("dialog-open");
-                closeButton.focus();
+        function getSlides(gallery) {
+            return Array.from(gallery.querySelectorAll("[data-gallery-slide]"));
+        }
+
+        function updateDialog() {
+            if (!dialogState.gallery || !dialogImage) return;
+            var slides = getSlides(dialogState.gallery);
+            var slide = slides[dialogState.index];
+            var image = slide && slide.querySelector("img");
+            if (!image) return;
+            dialogImage.src = image.currentSrc || image.src;
+            dialogImage.alt = image.alt;
+            dialogTitle.textContent = dialogState.gallery.getAttribute("data-project-title") || "项目图片";
+            dialogCount.textContent = (dialogState.index + 1) + " / " + slides.length;
+        }
+
+        function moveDialog(step) {
+            if (!dialogState.gallery) return;
+            var slides = getSlides(dialogState.gallery);
+            dialogState.index = (dialogState.index + step + slides.length) % slides.length;
+            updateDialog();
+        }
+
+        function openDialog(gallery, index, trigger) {
+            if (!dialog || typeof dialog.showModal !== "function") return;
+            dialogState.gallery = gallery;
+            dialogState.index = index;
+            dialogState.trigger = trigger;
+            updateDialog();
+            dialog.showModal();
+            document.body.classList.add("dialog-open");
+            closeButton.focus();
+        }
+
+        galleries.forEach(function (gallery) {
+            var viewport = gallery.querySelector("[data-gallery-viewport]");
+            var slides = getSlides(gallery);
+            var previous = gallery.querySelector("[data-gallery-prev]");
+            var next = gallery.querySelector("[data-gallery-next]");
+            var dotsWrap = gallery.querySelector("[data-gallery-dots]");
+            var currentLabel = gallery.querySelector("[data-gallery-current]");
+            var currentIndex = 0;
+            var scrollFrame = 0;
+            currentLabel.parentElement.setAttribute("aria-live", "polite");
+            var dots = slides.map(function (_, index) {
+                var dot = document.createElement("button");
+                dot.type = "button";
+                dot.className = "project-gallery__dot";
+                dot.setAttribute("aria-label", "查看第 " + (index + 1) + " 张图片");
+                dotsWrap.appendChild(dot);
+                return dot;
+            });
+
+            function renderState(index) {
+                currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+                currentLabel.textContent = String(currentIndex + 1);
+                previous.disabled = currentIndex === 0;
+                next.disabled = currentIndex === slides.length - 1;
+                dots.forEach(function (dot, dotIndex) {
+                    var active = dotIndex === currentIndex;
+                    dot.classList.toggle("is-active", active);
+                    if (active) dot.setAttribute("aria-current", "true");
+                    else dot.removeAttribute("aria-current");
+                });
             }
+
+            function goTo(index) {
+                var target = Math.max(0, Math.min(index, slides.length - 1));
+                viewport.scrollTo({ left: target * viewport.clientWidth, behavior: reduceMotion ? "auto" : "smooth" });
+                renderState(target);
+            }
+
+            dots.forEach(function (dot, index) {
+                dot.addEventListener("click", function () { goTo(index); });
+            });
+            slides.forEach(function (slide, index) {
+                slide.addEventListener("click", function () { openDialog(gallery, index, slide); });
+            });
+            previous.addEventListener("click", function () { goTo(currentIndex - 1); });
+            next.addEventListener("click", function () { goTo(currentIndex + 1); });
+            viewport.addEventListener("scroll", function () {
+                window.cancelAnimationFrame(scrollFrame);
+                scrollFrame = window.requestAnimationFrame(function () {
+                    if (!viewport.clientWidth) return;
+                    renderState(Math.round(viewport.scrollLeft / viewport.clientWidth));
+                });
+            }, { passive: true });
+            viewport.addEventListener("keydown", function (event) {
+                if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+                    event.preventDefault();
+                    goTo(currentIndex + (event.key === "ArrowRight" ? 1 : -1));
+                }
+            });
+            viewport.addEventListener("wheel", function (event) {
+                if (!event.shiftKey && Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+                event.preventDefault();
+                viewport.scrollLeft += event.deltaX || event.deltaY;
+            }, { passive: false });
+            window.addEventListener("resize", function () {
+                viewport.scrollLeft = currentIndex * viewport.clientWidth;
+            });
+            renderState(0);
         });
+
+        if (!dialog || !closeButton || !dialogPrev || !dialogNext) return;
 
         function closeDialog() {
             if (dialog.open) dialog.close();
         }
 
         closeButton.addEventListener("click", closeDialog);
+        dialogPrev.addEventListener("click", function () { moveDialog(-1); });
+        dialogNext.addEventListener("click", function () { moveDialog(1); });
+        dialog.addEventListener("keydown", function (event) {
+            if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+                event.preventDefault();
+                moveDialog(event.key === "ArrowRight" ? 1 : -1);
+            }
+        });
         dialog.addEventListener("click", function (event) {
             var rect = dialog.getBoundingClientRect();
             var inside = event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom;
@@ -67,7 +179,8 @@
         });
         dialog.addEventListener("close", function () {
             document.body.classList.remove("dialog-open");
-            openButton.focus();
+            if (dialogState.trigger) dialogState.trigger.focus();
+            dialogImage.removeAttribute("src");
         });
     }
 
@@ -94,7 +207,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         revealHero();
         loadBingImages();
-        setupCertificateDialog();
+        setupProjectGalleries();
         setupSectionState();
     });
 })();
