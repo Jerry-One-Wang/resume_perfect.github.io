@@ -603,6 +603,40 @@ button, a {
     content: "";
 }
 
+/* Keep the original deep-green identity, then add broad, low-contrast light washes.
+   Alternating the glow direction gives each section its own rhythm without
+   weakening the visual continuity of the resume. */
+.resume-section {
+    isolation: isolate;
+    overflow: hidden;
+    background-color: rgb(9, 45, 46);
+    background-image:
+        radial-gradient(ellipse 72% 64% at 4% 8%, rgba(79, 174, 177, .16) 0%, rgba(79, 174, 177, .055) 42%, transparent 72%),
+        radial-gradient(ellipse 62% 72% at 96% 88%, rgba(52, 161, 109, .14) 0%, rgba(52, 161, 109, .045) 46%, transparent 74%),
+        linear-gradient(135deg, rgba(20, 76, 76, .42) 0%, rgba(9, 45, 46, 0) 48%, rgba(12, 59, 52, .34) 100%);
+    background-repeat: no-repeat;
+}
+
+.resume-section:nth-of-type(even) {
+    background-image:
+        radial-gradient(ellipse 68% 68% at 96% 10%, rgba(70, 167, 142, .16) 0%, rgba(70, 167, 142, .05) 44%, transparent 72%),
+        radial-gradient(ellipse 64% 76% at 3% 92%, rgba(59, 150, 172, .13) 0%, rgba(59, 150, 172, .04) 48%, transparent 74%),
+        linear-gradient(225deg, rgba(18, 70, 67, .40) 0%, rgba(9, 45, 46, 0) 50%, rgba(10, 55, 57, .32) 100%);
+}
+
+#projects,
+#awards {
+    background-image:
+        radial-gradient(ellipse 82% 54% at 50% -8%, rgba(75, 172, 152, .15) 0%, rgba(75, 172, 152, .045) 48%, transparent 74%),
+        radial-gradient(ellipse 54% 68% at 100% 78%, rgba(54, 142, 169, .12) 0%, rgba(54, 142, 169, .035) 48%, transparent 76%),
+        linear-gradient(145deg, rgba(10, 54, 57, .24) 0%, rgba(9, 45, 46, 0) 44%, rgba(14, 64, 53, .34) 100%);
+}
+
+.resume-section > .section-shell {
+    position: relative;
+    z-index: 2;
+}
+
 .research-layout,
 .skills-layout {
     position: relative;
