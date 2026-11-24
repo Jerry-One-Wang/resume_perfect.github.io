@@ -691,6 +691,47 @@ button, a {
     font-size: 14px;
 }
 
+.research-progress {
+    margin-top: 48px;
+}
+
+.research-progress > h3 {
+    margin: 0 0 20px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.research-progress__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.research-progress__grid article {
+    padding: 24px;
+    border: 1px solid rgba(99, 223, 189, .24);
+    border-radius: 14px;
+    background: rgba(99, 223, 189, .055);
+}
+
+.research-progress__label {
+    color: #a9c2bd;
+    font-size: 14px;
+}
+
+.research-progress__grid h4 {
+    margin: 12px 0;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.research-progress__grid p {
+    margin: 0;
+    color: var(--accent-light);
+    font-size: 16px;
+}
+
 .project-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1271,6 +1312,8 @@ button, a {
 }
 
 @media (max-width: 680px) {
+    .research-progress__grid { grid-template-columns: 1fr; }
+
     :root { --shell: min(calc(100% - 30px), 1160px); }
 
     .hero .panel-main__inner {
@@ -1428,6 +1471,9 @@ button, a {
 }
 
 @media print {
+    .research-progress__grid article { background: white; border-color: #bbb; }
+    .research-progress > h3, .research-progress__grid h4 { color: black; }
+    .research-progress__label, .research-progress__grid p { color: #444; }
     .hero, .section-nav, .site-footer, .project-gallery__arrow, .project-gallery__status, .image-dialog { display: none !important; }
     body { background: white; color: black; font-size: 11pt; }
     .resume-section { padding: 28px 0; border-top: 1px solid #bbb; background: white; color: black; break-inside: avoid; box-shadow: none; }
